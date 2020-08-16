@@ -638,6 +638,18 @@
 					}
 				}
 				if(aTankCount.length == 0){//当所有坦克都被消灭的时候进入下一关
+					clearInterval(timer);
+						$('.select h2').css('display','block');
+						$('.select p').css('display','block');
+						$('#player1Num').text(player1CollideNum);
+						$('#player2Num').text(player2CollideNum);
+						$('.select').css('display','block').animate({'top':'50%','margin-top':'-200px','opacity':'0.8'}, 'slow');
+						aTankCount = [];//清空所有敌方Tank
+						aMyTankCount = [];//清空所有所有我方Tank
+						aBulletCount = [];//清空所有敌方坦克子弹
+						aMyBulletCount1 = [];//清空所有子弹
+						aMyBulletCount2 = [];//清空所有子弹
+						return true;
 					if(waitTime){return;}
 					waitTime = true;
 					setTimeout(function(){
