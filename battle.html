@@ -362,13 +362,13 @@
 				
 				//tank1移动
 				if(!player1Die && ev.keyCode == 87){//上移动
-					myTankUp = true;
+					myTankUp = true;myTankDown = false;myTankRight = false;myTankLeft = false;
 				}else if(!player1Die && ev.keyCode == 83){//下移动
-					myTankDown = true;
+					myTankDown = true;myTankRight = false;myTankLeft = false;myTankUp = false
 				}else if(!player1Die && ev.keyCode == 68){//右移动
-					myTankRight = true;
+					myTankRight = true;myTankUp = false;myTankDown = false	;myTankLeft = false;
 				}else if(!player1Die && ev.keyCode == 65){//左移动
-					myTankLeft = true;
+					myTankLeft = true;myTankUp = false;myTankDown = false;myTankRight = false;
 				}
 				if(!player1Die && ev.keyCode == 32){
 					var speed = 10;//定义子弹速度
@@ -402,13 +402,13 @@
 					
 					//tank2移动
 					if(!player2Die && ev.keyCode == 38){//上移动
-						myTank2Up = true;
+						myTank2Up = true;myTank2Down = false;myTank2Right = false;myTank2Left = false;
 					}else if(!player2Die && ev.keyCode == 40){//下移动
-						myTank2Down = true;
+						myTank2Down = true;myTank2Up = false;myTank2Right = false;myTank2Left = false;
 					}else if(!player2Die && ev.keyCode == 39){//右移动
-						myTank2Right = true;
+						myTank2Right = true;myTank2Up = false;myTank2Down = false;	myTank2Left = false;
 					}else if(!player2Die && ev.keyCode == 37){//左移动
-						myTank2Left = true;
+						myTank2Left = true;myTank2Up = false;myTank2Down = false;myTank2Right = false;
 					}
 					if(!player2Die && ev.keyCode == 8){
 						var speed = 10;//定义子弹速度
@@ -434,22 +434,16 @@
 				}
 			}
 			document.onkeyup = function(ev){
-				if(ev.keyCode == 87){//上移动
+				if(ev.keyCode == 87 || ev.keyCode == 65 || ev.keyCode == 68 || ev.keyCode == 83){//上移动
 					myTankUp = false;
-				}else if(ev.keyCode == 83){//下移动
 					myTankDown = false;
-				}else if(ev.keyCode == 68){//右移动
 					myTankRight = false;
-				}else if(ev.keyCode == 65){//左移动
 					myTankLeft = false;
 				}
-				if(ev.keyCode == 38){//上移动
+				if(ev.keyCode == 38 || ev.keyCode == 40 || ev.keyCode == 39 || ev.keyCode == 37){//上移动
 					myTank2Up = false;
-				}else if(ev.keyCode == 40){//下移动
 					myTank2Down = false;
-				}else if(ev.keyCode == 39){//右移动
 					myTank2Right = false;
-				}else if(ev.keyCode == 37){//左移动
 					myTank2Left = false;
 				}
 			}

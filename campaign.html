@@ -172,7 +172,12 @@
 				myTankImg1 = new Image(),
 				myTankImg2 = new Image(),
 				myTankImg3 = new Image(),
+				myTank2Img0 = new Image(),//我方坦克2
+				myTank2Img1 = new Image(),
+				myTank2Img2 = new Image(),
+				myTank2Img3 = new Image(),
 				boomImg = new Image();//爆炸
+				metal  = new Image()
 				
 			img0.src="img/tank-img0.png";
 			img1.src="img/tank-img1.png";
@@ -183,7 +188,12 @@
 			myTankImg1.src="img/mytank-img1.png";
 			myTankImg2.src="img/mytank-img2.png";
 			myTankImg3.src="img/mytank-img3.png";
+			myTank2Img0.src="img/mytank2-img0.png";
+			myTank2Img1.src="img/mytank2-img1.png";
+			myTank2Img2.src="img/mytank2-img2.png";
+			myTank2Img3.src="img/mytank2-img3.png";
 			boomImg.src="img/boom-img.png";
+			metal.src = "img/d1160924ab18972b052b38a3e4cd7b899e510a41.jpg"
 			
 //			var timer = setInterval(function(){
 //				loop();
@@ -253,7 +263,7 @@
 				this.direction = direction;//方向
 				this.X = X;//X坐标
 				this.Y = Y;//Y轴坐标
-				this.img = img0;
+				this.img = 100==id?myTankImg0:myTank2Img0;
 				this.time = Math.floor(Math.random()*50);
 				this.draw = function(){
 					ctx.drawImage(this.img,0,0,100,100,this.X,this.Y,tankWidth,tankWidth);
@@ -358,13 +368,13 @@
 				
 				//tank1移动
 				if(!player1Die && ev.keyCode == 87){//上移动
-					myTankUp = true;
+					myTankUp = true;myTankDown = false;myTankRight = false;myTankLeft = false;
 				}else if(!player1Die && ev.keyCode == 83){//下移动
-					myTankDown = true;
+					myTankDown = true;myTankRight = false;myTankLeft = false;myTankUp = false
 				}else if(!player1Die && ev.keyCode == 68){//右移动
-					myTankRight = true;
+					myTankRight = true;myTankUp = false;myTankDown = false	;myTankLeft = false;
 				}else if(!player1Die && ev.keyCode == 65){//左移动
-					myTankLeft = true;
+					myTankLeft = true;myTankUp = false;myTankDown = false;myTankRight = false;
 				}
 				if(!player1Die && ev.keyCode == 32){
 					var speed = 10;//定义子弹速度
@@ -398,13 +408,13 @@
 					
 					//tank2移动
 					if(!player2Die && ev.keyCode == 38){//上移动
-						myTank2Up = true;
+						myTank2Up = true;myTank2Down = false;myTank2Right = false;myTank2Left = false;
 					}else if(!player2Die && ev.keyCode == 40){//下移动
-						myTank2Down = true;
+						myTank2Down = true;myTank2Up = false;myTank2Right = false;myTank2Left = false;
 					}else if(!player2Die && ev.keyCode == 39){//右移动
-						myTank2Right = true;
+						myTank2Right = true;myTank2Up = false;myTank2Down = false;	myTank2Left = false;
 					}else if(!player2Die && ev.keyCode == 37){//左移动
-						myTank2Left = true;
+						myTank2Left = true;myTank2Up = false;myTank2Down = false;myTank2Right = false;
 					}
 					if(!player2Die && ev.keyCode == 8){
 						var speed = 10;//定义子弹速度
@@ -430,22 +440,16 @@
 				}
 			}
 			document.onkeyup = function(ev){
-				if(ev.keyCode == 87){//上移动
+				if(ev.keyCode == 87 || ev.keyCode == 65 || ev.keyCode == 68 || ev.keyCode == 83){//上移动
 					myTankUp = false;
-				}else if(ev.keyCode == 83){//下移动
 					myTankDown = false;
-				}else if(ev.keyCode == 68){//右移动
 					myTankRight = false;
-				}else if(ev.keyCode == 65){//左移动
 					myTankLeft = false;
 				}
-				if(ev.keyCode == 38){//上移动
+				if(ev.keyCode == 38 || ev.keyCode == 40 || ev.keyCode == 39 || ev.keyCode == 37){//上移动
 					myTank2Up = false;
-				}else if(ev.keyCode == 40){//下移动
 					myTank2Down = false;
-				}else if(ev.keyCode == 39){//右移动
 					myTank2Right = false;
-				}else if(ev.keyCode == 37){//左移动
 					myTank2Left = false;
 				}
 			}
@@ -482,19 +486,19 @@
 					if(!player2Die && myTank2Up){//上移动
 						myTank2['Y'] = myTank2['Y'] - myTank2['speed'] < 0 ? 0 : myTank2['Y'] - myTank2['speed'];
 						myTank2['direction'] = 0;
-						myTank2['img'] = myTankImg0;
+						myTank2['img'] = myTank2Img0;
 					}else if(!player2Die && myTank2Down){//下移动
 						myTank2.Y = myTank2.Y + myTank2.speed > screenY - tankWidth ? screenY - tankWidth : myTank2.Y + myTank2.speed;
 						myTank2['direction'] = 2;
-						myTank2['img'] = myTankImg2;
+						myTank2['img'] = myTank2Img2;
 					}else if(!player2Die && myTank2Right){//右移动
 						myTank2['X'] =myTank2.X + myTank2['speed'] > screenX - tankWidth ? screenX - tankWidth : myTank2.X + myTank2.speed;
 						myTank2['direction'] = 1;
-						myTank2['img'] = myTankImg1;
+						myTank2['img'] = myTank2Img1;
 					}else if(!player2Die && myTank2Left){//左移动
 						myTank2['X'] = myTank2.X - myTank2['speed'] < 0 ? 0 : myTank2.X - myTank2.speed;
 						myTank2['direction'] = 3;
-						myTank2['img'] = myTankImg3;
+						myTank2['img'] = myTank2Img3;
 					}
 				}
 			}
